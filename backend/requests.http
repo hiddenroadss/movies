@@ -1,3 +1,20 @@
+### Get a list of movies
+
 GET http://localhost:3000/movies
 
-POST http://localhost:3000/movies
+### Login a user
+
+
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{
+    "username": "john", 
+    "password": "changeme"
+} 
+
+
+### Get user profile
+
+POST http://localhost:3000/profile 
+authorization: Bearer 
