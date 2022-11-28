@@ -1,23 +1,80 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateMovieDto } from './dtos/create-movie.dto';
-import { Movie } from './movie.entity';
+import { UpdateMovieDto } from './dtos/update-movie.dto';
+import { Mood } from './entities/mood.entity';
+import { Movie } from './entities/movie.entity';
 
 @Injectable()
 export class MoviesService {
-  constructor(@InjectRepository(Movie) private moviesRepo: Repository<Movie>) {}
+  constructor(
+    @InjectRepository(Movie) private moviesRepo: Repository<Movie>,
+    @InjectRepository(Mood) private moodRepo: Repository<Mood>,
+  ) {}
 
-  find(): Promise<Movie[]> {
-    return this.moviesRepo.find();
+  findAll(): Promise<Movie[]> {
+    return this.moviesRepo.find({
+      relations: ['moods'],
+    });
   }
 
-  findOne(id: number): Promise<Movie> {
-    return this.moviesRepo.findOneBy({ id });
+  async findOne(id: number): Promise<Movie> {
+    const movie = await this.moviesRepo.findOne({
+      where: {
+        id,
+      },
+      relations: ['moods'],
+    });
+    if (!movie) {
+      throw new NotFoundException(`Movie with id ${id} is not found`);
+    }
+
+    return movie;
   }
 
-  create(movieDto: CreateMovieDto): Promise<Movie> {
-    const movie = this.moviesRepo.create(movieDto);
+  async create(createMovieDto: CreateMovieDto): Promise<Movie> {
+    const moods = await Promise.all(
+      createMovieDto.moods.map((mood) => this.preloadMoodByName(mood)),
+    );
+    console.log(moods);
+    const movie = this.moviesRepo.create({
+      ...createMovieDto,
+      moods,
+    });
     return this.moviesRepo.save(movie);
+  }
+
+  async update(id: string, updateMovieDto: UpdateMovieDto): Promise<Movie> {
+    const moods =
+      updateMovieDto.moods &&
+      (await Promise.all(
+        updateMovieDto.moods.map((mood) => this.preloadMoodByName(mood)),
+      ));
+    const movie = await this.moviesRepo.preload({
+      id: +id,
+      ...updateMovieDto,
+      moods,
+    });
+
+    if (!movie) {
+      throw new NotFoundException(`Movie with id ${id} is not found`);
+    }
+
+    return this.moviesRepo.save(movie);
+  }
+
+  async remove(id: string): Promise<Movie> {
+    const movie = await this.moviesRepo.findOneBy({ id: +id });
+    return this.moviesRepo.remove(movie);
+  }
+
+  private async preloadMoodByName(name: string): Promise<Mood> {
+    const existingMood = await this.moodRepo.findOneBy({ name });
+    if (existingMood) {
+      return existingMood;
+    }
+
+    return this.moodRepo.create({ name });
   }
 }

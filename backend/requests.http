@@ -2,6 +2,37 @@
 
 GET http://localhost:3000/movies
 
+### Get a particular movie
+
+GET http://localhost:3000/movies/8
+
+### Create a movie
+
+POST http://localhost:3000/movies
+content-type: application/json
+
+{
+    "title": "Forest Gump",
+    "description": "Great film",
+    "moods": [
+        "Inspiring",
+        "Kind"
+    ]
+}
+
+### Update a movie
+
+PATCH http://localhost:3000/movies/8
+content-type: application/json
+
+{
+    "description": "Great film ever"
+}
+
+### Delete a movie
+
+DELETE http://localhost:3000/movies/8
+
 ### Login a user
 
 
