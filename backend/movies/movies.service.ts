@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PaginationQueryDto } from 'backend/common/dto/pagination-query.dto';
 import { Repository } from 'typeorm';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 import { UpdateMovieDto } from './dtos/update-movie.dto';
@@ -13,9 +14,12 @@ export class MoviesService {
     @InjectRepository(Mood) private moodRepo: Repository<Mood>,
   ) {}
 
-  findAll(): Promise<Movie[]> {
+  findAll(paginationQuery: PaginationQueryDto): Promise<Movie[]> {
+    const { limit, offset } = paginationQuery;
     return this.moviesRepo.find({
       relations: ['moods'],
+      skip: offset,
+      take: limit,
     });
   }
 

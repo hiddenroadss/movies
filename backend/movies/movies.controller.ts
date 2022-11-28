@@ -6,7 +6,9 @@ import {
   Param,
   Patch,
   Delete,
+  Query,
 } from '@nestjs/common';
+import { PaginationQueryDto } from 'backend/common/dto/pagination-query.dto';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 import { UpdateMovieDto } from './dtos/update-movie.dto';
 import { MoviesService } from './movies.service';
@@ -16,8 +18,8 @@ export class MoviesController {
   constructor(private moviesService: MoviesService) {}
 
   @Get()
-  find() {
-    return this.moviesService.findAll();
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
+    return this.moviesService.findAll(paginationQuery);
   }
 
   @Get('/:id')
