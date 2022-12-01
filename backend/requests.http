@@ -33,19 +33,33 @@ content-type: application/json
 
 DELETE http://localhost:3000/movies/8
 
-### Login a user
+### Create a user
 
-
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/auth/local/signup
 content-type: application/json
 
 {
-    "username": "john", 
+    "email": "johssn@john.com", 
+    "password": "changeme"
+} 
+
+### Login a user
+
+POST http://localhost:3000/auth/local/signin
+content-type: application/json
+
+{
+    "email": "johssn@john.com", 
     "password": "changeme"
 } 
 
 
 ### Get user profile
 
-POST http://localhost:3000/profile 
-authorization: Bearer 
+POST http://localhost:3000/auth/logout 
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9oc3NuQGpvaG4uY29tIiwiaWF0IjoxNjY5OTI2NjY0LCJleHAiOjE2Njk5Mjc1NjR9.nRmwLgwzCKm5uYP6WuofhmJDFi7YU7i962U5xixk4Vg
+
+### Refresh
+POST http://localhost:3000/auth/refresh 
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9oc3NuQGpvaG4uY29tIiwiaWF0IjoxNjY5OTI5ODM5LCJleHAiOjE2NzA1MzQ2Mzl9.vGRBG-WVwfwK5m_TJirBPIECwR566xqXwcEtYzzZQjU
+

@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { MoviesModule } from './movies/movies.module';
-import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 import * as Joi from '@hapi/joi';
+import { AccessTokenGuard } from './common/guards/access-token.guard';
 
 @Module({
   imports: [
@@ -23,10 +25,16 @@ import * as Joi from '@hapi/joi';
     }),
     DatabaseModule,
     MoviesModule,
-    UsersModule,
     AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AccessTokenGuard,
+    },
+  ],
 })
 export class AppModule {}
