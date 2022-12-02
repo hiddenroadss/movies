@@ -1,6 +1,6 @@
 import { Mood } from 'backend/moods/entities/mood.entity';
+import { Talent } from 'backend/talents/entities/talent.entity';
 import { IsDate, IsString, ValidateNested } from 'class-validator';
-import { Actor } from '../entities/actor.entity';
 
 export class CreateMovieDto {
   @IsString()
@@ -13,5 +13,5 @@ export class CreateMovieDto {
   moods: Mood[];
 
   @ValidateNested({ each: true })
-  actors: Actor[];
+  actors: Talent[];
 }

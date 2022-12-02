@@ -1,8 +1,8 @@
+import { Movie } from 'backend/movies/entities/movie.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Movie } from './movie.entity';
 
 @Entity()
-export class Actor {
+export class Talent {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -12,6 +12,6 @@ export class Actor {
   @Column()
   bio: string;
 
-  @ManyToMany(() => Movie, (movie) => movie.actors)
+  @ManyToMany(() => Movie, (movie) => movie.moods)
   movies: Movie[];
 }
