@@ -1,5 +1,5 @@
+import { Movie } from 'backend/movies/entities/movie.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Movie } from './movie.entity';
 
 @Entity()
 export class Mood {

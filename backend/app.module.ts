@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import * as Joi from '@hapi/joi';
 import { AccessTokenGuard } from './common/guards/access-token.guard';
+import { MoodsModule } from './moods/moods.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { AccessTokenGuard } from './common/guards/access-token.guard';
     MoviesModule,
     AuthModule,
     UsersModule,
+    MoodsModule,
   ],
   controllers: [AppController],
   providers: [

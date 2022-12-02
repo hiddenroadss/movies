@@ -1,38 +1,4 @@
-### Get a list of movies
-
-GET http://localhost:3000/movies
-
-### Get a particular movie
-
-GET http://localhost:3000/movies/8
-
-### Create a movie
-
-POST http://localhost:3000/movies
-content-type: application/json
-
-{
-    "title": "Forest Gump",
-    "description": "Great film",
-    "moods": [
-        "Inspiring",
-        "Kind"
-    ]
-}
-
-### Update a movie
-
-PATCH http://localhost:3000/movies/8
-content-type: application/json
-
-{
-    "description": "Great film ever"
-}
-
-### Delete a movie
-
-DELETE http://localhost:3000/movies/8
-
+### AUTH
 ### Create a user
 
 POST http://localhost:3000/auth/local/signup
@@ -63,3 +29,99 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsI
 POST http://localhost:3000/auth/refresh 
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9oc3NuQGpvaG4uY29tIiwiaWF0IjoxNjY5OTI5ODM5LCJleHAiOjE2NzA1MzQ2Mzl9.vGRBG-WVwfwK5m_TJirBPIECwR566xqXwcEtYzzZQjU
 
+
+
+### MOVIES
+
+
+### Get a list of movies
+
+GET http://localhost:3000/movies
+
+### Get a particular movie
+
+GET http://localhost:3000/movies/8
+
+### Create a movie
+
+POST http://localhost:3000/movies
+content-type: application/json
+
+{
+    "title": "Forest Gump",
+    "description": "Great film",
+    "moods": [
+        {
+            "name": "Inspiring"
+        },
+        {
+            "name": "Kind"
+        }
+    ],
+    "actors": [
+        {
+            "name": "Tom Hanks"
+        }
+    ]
+}
+
+### Update a movie
+
+PATCH http://localhost:3000/movies/8
+content-type: application/json
+
+{
+    "description": "Great film ever"
+}
+
+### Delete a movie
+
+DELETE http://localhost:3000/movies/8
+
+
+### MOODS
+
+
+### Get a list of moods
+
+GET http://localhost:3000/moods
+
+### Get a particular mood
+
+GET http://localhost:3000/moods/8
+
+### Create a mood
+
+POST http://localhost:3000/moods
+content-type: application/json
+
+{
+    "title": "Forest Gump",
+    "description": "Great film",
+    "moods": [
+        {
+            "name": "Inspiring"
+        },
+        {
+            "name": "Kind"
+        }
+    ],
+    "actors": [
+        {
+            "name": "Tom Hanks"
+        }
+    ]
+}
+
+### Update a mood
+
+PATCH http://localhost:3000/moods/8
+content-type: application/json
+
+{
+    "description": "Great film ever"
+}
+
+### Delete a mood
+
+DELETE http://localhost:3000/movies/8

@@ -1,3 +1,4 @@
+import { Mood } from 'backend/moods/entities/mood.entity';
 import {
   Column,
   Entity,
@@ -5,7 +6,7 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Mood } from './mood.entity';
+import { Actor } from './actor.entity';
 
 @Entity()
 export class Movie {
@@ -17,6 +18,10 @@ export class Movie {
 
   @Column()
   description: string;
+
+  @JoinTable()
+  @ManyToMany(() => Actor, (actor) => actor.movies)
+  actors: Actor[];
 
   @JoinTable()
   @ManyToMany(() => Mood, (mood) => mood.movies, {

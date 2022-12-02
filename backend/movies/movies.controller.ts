@@ -8,11 +8,13 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
+import { Public } from 'backend/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'backend/common/dto/pagination-query.dto';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 import { UpdateMovieDto } from './dtos/update-movie.dto';
 import { MoviesService } from './movies.service';
 
+@Public()
 @Controller('movies')
 export class MoviesController {
   constructor(private moviesService: MoviesService) {}
