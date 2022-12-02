@@ -31,6 +31,7 @@ export class MoodsController {
 
   @Post()
   create(@Body() createMovieDto: CreateMoodDto) {
+    console.log(createMovieDto);
     return this.moodsService.create(createMovieDto);
   }
 

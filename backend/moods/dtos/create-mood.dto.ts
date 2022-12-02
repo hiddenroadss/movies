@@ -1,13 +1,3 @@
-import { Movie } from 'backend/movies/entities/movie.entity';
-import { IsDate, IsString, ValidateNested } from 'class-validator';
+import { MoodDto } from './mood.dto';
 
-export class CreateMoodDto {
-  @IsString()
-  name: string;
-
-  @IsString()
-  description: string;
-
-  @ValidateNested({ each: true })
-  movies: Movie[];
-}
+export class CreateMoodDto extends MoodDto {}

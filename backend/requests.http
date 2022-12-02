@@ -96,21 +96,8 @@ POST http://localhost:3000/moods
 content-type: application/json
 
 {
-    "title": "Forest Gump",
-    "description": "Great film",
-    "moods": [
-        {
-            "name": "Inspiring"
-        },
-        {
-            "name": "Kind"
-        }
-    ],
-    "actors": [
-        {
-            "name": "Tom Hanks"
-        }
-    ]
+    "name": "cozy",
+
 }
 
 ### Update a mood
