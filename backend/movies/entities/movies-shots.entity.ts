@@ -1,8 +1,9 @@
+import { IMovieShot } from 'interfaces';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Movie } from './movie.entity';
 
 @Entity()
-export class MovieShot {
+export class MovieShot implements IMovieShot {
   @PrimaryGeneratedColumn()
   id: number;
 

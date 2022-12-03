@@ -8,8 +8,9 @@ import {
   Length,
   ValidateNested,
 } from 'class-validator';
+import { IMood, IMovie } from 'interfaces';
 
-export class MoodDto {
+export class MoodDto implements Omit<IMood, 'id'> {
   @IsString()
   @Length(2, 50)
   name: string;
@@ -24,5 +25,5 @@ export class MoodDto {
   @ArrayMinSize(1)
   @ValidateNested({ each: true })
   @Type(() => MovieDto)
-  movies: MovieDto[];
+  movies: IMovie[];
 }

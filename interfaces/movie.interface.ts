@@ -25,19 +25,19 @@ export interface IMovie {
 
   fees: number;
 
-  rating: IRating;
+  rating?: IRating;
 
   description: string;
 
   actors: ITalent[];
 
-  moods: IMood[];
+  moods?: IMood[];
 
   shots: IMovieShot[];
 
-  reviews: IReview[];
+  reviews?: IReview[];
 
-  createdAt: Date;
+  createdAt?: Date;
 
-  updatedAt: Date;
+  updatedAt?: Date;
 }

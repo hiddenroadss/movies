@@ -1,8 +1,9 @@
 import { Review } from 'backend/movies/entities/review.entity';
+import { IUser } from 'interfaces';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class User implements IUser {
   @PrimaryGeneratedColumn()
   id: number;
 

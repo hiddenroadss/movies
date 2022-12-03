@@ -8,9 +8,10 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { IMovie } from 'interfaces';
 import { MovieShot } from '../entities/movies-shots.entity';
 
-export class MovieDto {
+export class MovieDto implements Omit<IMovie, 'id'> {
   @IsString()
   @IsNotEmpty()
   title: string;

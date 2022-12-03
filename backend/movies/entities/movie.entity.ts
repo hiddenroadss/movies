@@ -1,5 +1,6 @@
 import { Mood } from 'backend/moods/entities/mood.entity';
 import { Talent } from 'backend/talents/entities/talent.entity';
+import { IMovie } from 'interfaces';
 import {
   Column,
   CreateDateColumn,
@@ -16,7 +17,7 @@ import { Rating } from './rating.entity';
 import { Review } from './review.entity';
 
 @Entity()
-export class Movie {
+export class Movie implements IMovie {
   @PrimaryGeneratedColumn()
   id: number;
 

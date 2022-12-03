@@ -1,9 +1,9 @@
-import { RatingStars } from 'interfaces/rating.interface';
+import { IRating, RatingStars } from 'interfaces/rating.interface';
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Movie } from './movie.entity';
 
 @Entity()
-export class Rating {
+export class Rating implements IRating {
   @PrimaryGeneratedColumn()
   id: number;
 

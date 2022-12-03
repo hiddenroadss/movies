@@ -1,4 +1,5 @@
 import { Movie } from 'backend/movies/entities/movie.entity';
+import { ITalent } from 'interfaces';
 import {
   Column,
   Entity,
@@ -8,7 +9,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Talent {
+export class Talent implements ITalent {
   @PrimaryGeneratedColumn()
   id: number;
 
