@@ -1,5 +1,11 @@
 import { Movie } from 'backend/movies/entities/movie.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Talent {
@@ -10,8 +16,14 @@ export class Talent {
   name: string;
 
   @Column()
+  age: number;
+
+  @Column()
   bio: string;
 
-  @ManyToMany(() => Movie, (movie) => movie.moods)
+  // @Column()
+  // images: string[];
+
+  @OneToMany(() => Movie, (movie) => movie.actors)
   movies: Movie[];
 }

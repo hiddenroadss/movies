@@ -8,6 +8,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { MovieShot } from '../entities/movies-shots.entity';
 
 export class MovieDto {
   @IsString()
@@ -18,19 +19,35 @@ export class MovieDto {
   @IsOptional()
   originalTitle: string;
 
+  @IsString()
+  @IsOptional()
+  slogan: string;
+
+  @IsString()
+  @IsOptional()
+  poster: string;
+
   @IsDate()
   releaseDate: Date;
-
-  @IsOptional()
-  @ValidateNested()
-  director: Talent;
-
-  @IsNumber()
-  duration: number;
 
   @IsString()
   @IsOptional()
   country: string;
+
+  // @IsOptional()
+  // @ValidateNested()
+  // director: Talent;
+
+  @IsNumber()
+  @IsOptional()
+  budget: number;
+
+  @IsNumber()
+  @IsOptional()
+  fees: number;
+
+  @IsNumber()
+  duration: number;
 
   @IsString()
   @IsNotEmpty()
@@ -43,4 +60,8 @@ export class MovieDto {
   @IsOptional()
   @ValidateNested({ each: true })
   actors: Talent[];
+
+  @IsOptional()
+  @ValidateNested({ each: true })
+  shots: MovieShot[];
 }

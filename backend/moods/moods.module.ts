@@ -8,5 +8,6 @@ import { MoodsService } from './moods.service';
   controllers: [MoodsController],
   providers: [MoodsService],
   imports: [TypeOrmModule.forFeature([Mood])],
+  exports: [MoodsService],
 })
 export class MoodsModule {}

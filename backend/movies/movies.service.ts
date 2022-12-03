@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationQueryDto } from 'backend/common/dto/pagination-query.dto';
+import { MoodsService } from 'backend/moods/moods.service';
 import { Repository } from 'typeorm';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 import { UpdateMovieDto } from './dtos/update-movie.dto';
@@ -8,7 +9,10 @@ import { Movie } from './entities/movie.entity';
 
 @Injectable()
 export class MoviesService {
-  constructor(@InjectRepository(Movie) private moviesRepo: Repository<Movie>) {}
+  constructor(
+    @InjectRepository(Movie) private moviesRepo: Repository<Movie>,
+    private moodsService: MoodsService,
+  ) {}
 
   findAll(paginationQuery: PaginationQueryDto): Promise<Movie[]> {
     const { limit, offset } = paginationQuery;
@@ -50,11 +54,9 @@ export class MoviesService {
       id: +id,
       ...updateMovieDto,
     });
-
     if (!movie) {
       throw new NotFoundException(`Movie with id ${id} is not found`);
     }
-
     return this.moviesRepo.save(movie);
   }
 
@@ -64,11 +66,11 @@ export class MoviesService {
   }
 
   // private async preloadMoodByName(name: string): Promise<Mood> {
-  //   const existingMood = await this.moodRepo.findOneBy({ name });
+  //   const existingMood = await this.moodsService.findOne(name);
   //   if (existingMood) {
   //     return existingMood;
   //   }
 
-  //   return this.moodRepo.create({ name });
+  //   return this.moodsService.create({ name });
   // }
 }

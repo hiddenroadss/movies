@@ -32,14 +32,14 @@ export class MoodsService {
     return movie;
   }
 
-  async create(createMovieDto: CreateMoodDto): Promise<Mood> {
+  async create(createMoodDto: CreateMoodDto): Promise<Mood> {
     const movie = this.moodRepo.create({
-      ...createMovieDto,
+      ...createMoodDto,
     });
     return this.moodRepo.save(movie);
   }
 
-  async update(id: string, updateMovieDto: UpdateMoodDto): Promise<Mood> {
+  async update(id: string, updateMoodDto: UpdateMoodDto): Promise<Mood> {
     // const moods =
     //   updateMovieDto.moods &&
     //   (await Promise.all(
@@ -47,7 +47,7 @@ export class MoodsService {
     //   ));
     const movie = await this.moodRepo.preload({
       id: +id,
-      ...updateMovieDto,
+      ...updateMoodDto,
     });
 
     if (!movie) {
