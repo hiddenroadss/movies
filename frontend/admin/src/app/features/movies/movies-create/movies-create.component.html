@@ -1,0 +1,77 @@
+<section>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="save()"
+    class="flex flex-col items-center"
+  >
+    <div>
+      <label
+        >Title
+        <input type="text" class="block" formControlName="title" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Original Title
+        <input type="text" class="block" formControlName="originalTitle" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Slogan
+        <input type="text" class="block" formControlName="slogan" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Poster
+        <input type="text" class="block" formControlName="poster" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Release Date
+        <input type="date" class="block" formControlName="releaseDate" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Country
+        <input type="text" class="block" formControlName="country" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Budget
+        <input type="number" class="block" formControlName="budget" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Fees
+        <input type="number" class="block" formControlName="fees" />
+      </label>
+    </div>
+
+    <div>
+      <label
+        >Duration
+        <input type="number" class="block" formControlName="duration" />
+      </label>
+    </div>
+
+    <div>
+      <label>Description</label>
+      <textarea class="block" formControlName="description"></textarea>
+    </div>
+
+    <button [disabled]="form.invalid" type="submit">Submit</button>
+  </form>
+</section>

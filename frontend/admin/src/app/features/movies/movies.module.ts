@@ -4,9 +4,16 @@ import { CommonModule } from '@angular/common';
 import { MoviesRoutingModule } from './movies-routing.module';
 import { MoviesComponent } from './movies.component';
 import { MoviesDetailedModule } from './movies-detailed/movies-detailed.module';
+import { MoviesCreateComponent } from './movies-create/movies-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [MoviesComponent],
-  imports: [CommonModule, MoviesRoutingModule, MoviesDetailedModule],
+  declarations: [MoviesComponent, MoviesCreateComponent],
+  imports: [
+    CommonModule,
+    MoviesRoutingModule,
+    MoviesDetailedModule,
+    ReactiveFormsModule,
+  ],
 })
 export class MoviesModule {}
