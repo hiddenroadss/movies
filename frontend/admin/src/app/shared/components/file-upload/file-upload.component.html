@@ -1,0 +1,15 @@
+<div
+  class="border rounded-sm border-gray-500 relative w-2/3 max-w-full mx-auto p-8"
+>
+  <span class="border border-gray-500 rounded-sm px-4 py-2 mr-4"
+    >Choose file</span
+  >
+  <span
+    class="text-xs font-light whitespace-nowrap overflow-hidden truncate inline-block align-middle"
+    >{{ file ? file.name : 'or drag and drop file here' }}</span
+  >
+  <input
+    class="absolute left-0 top-0 h-full w-full cursor-pointer opacity-0"
+    type="file"
+  />
+</div>

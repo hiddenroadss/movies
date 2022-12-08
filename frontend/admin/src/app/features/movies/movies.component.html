@@ -1,1 +1,6 @@
-<mv-movies-create></mv-movies-create>
+<section>
+  <div *ngFor="let movie of movies$ | async">
+    <h5>{{ movie.title }}</h5>
+    <p>{{ movie.releaseDate | date }}</p>
+  </div>
+</section>

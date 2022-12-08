@@ -26,10 +26,7 @@
     </div>
 
     <div>
-      <label
-        >Poster
-        <input type="text" class="block" formControlName="poster" />
-      </label>
+      <mv-file-upload formControlName="poster"></mv-file-upload>
     </div>
 
     <div>
@@ -73,5 +70,7 @@
     </div>
 
     <button [disabled]="form.invalid" type="submit">Submit</button>
+    {{ form.value.poster | json }}
+    {{ form.valid }}
   </form>
 </section>
