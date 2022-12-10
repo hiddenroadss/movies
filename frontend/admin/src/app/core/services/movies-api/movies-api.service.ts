@@ -18,7 +18,11 @@ export class MoviesApiService {
   }
 
   create(movie: any) {
-    return this.http.post<IMovie>(`/api/movies`, toFormData(movie), {
+    return this.http.post<IMovie>(`/api/movies`, movie);
+  }
+
+  uploadPoster(poster: { [key: string]: File }, id: number) {
+    return this.http.post(`/api/movies/${id}/poster`, toFormData(poster), {
       reportProgress: true,
       observe: 'events',
     });

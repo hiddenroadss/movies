@@ -112,3 +112,8 @@ content-type: application/json
 ### Delete a mood
 
 DELETE http://localhost:3000/movies/8
+
+
+### Get movies poster
+
+GET http://localhost:3000/movies/13/poster

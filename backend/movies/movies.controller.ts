@@ -7,7 +7,11 @@ import {
   Patch,
   Delete,
   Query,
+  UseInterceptors,
+  UploadedFiles,
+  Res,
 } from '@nestjs/common';
+import { FilesInterceptor } from '@nestjs/platform-express/multer';
 import { Public } from 'backend/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'backend/common/dto/pagination-query.dto';
 import { CreateMovieDto } from './dtos/create-movie.dto';
@@ -42,5 +46,16 @@ export class MoviesController {
   @Delete('/:id')
   remove(@Param('id') id: string) {
     return this.moviesService.remove(id);
+  }
+
+  @Post('/:id/poster')
+  @UseInterceptors(FilesInterceptor('poster'))
+  uploadPoster(@UploadedFiles() files) {
+    console.log(files);
+  }
+
+  @Get('/:id/poster')
+  findUploadedFile(@Param('id') id: string, @Res() res) {
+    res.sendFile(`${id}_poster.png`, { root: 'uploads/movies' });
   }
 }

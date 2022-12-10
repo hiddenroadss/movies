@@ -1,6 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs';
 import { MoviesApiService } from '../../../core/services/movies-api/movies-api.service';
 import { toResponseBody } from '../../../shared/utils/operators/to-response-body.operator';
 import { uploadProgress } from '../../../shared/utils/operators/upload-progress.operator';
@@ -36,9 +37,20 @@ export class MoviesCreateComponent implements OnInit {
 
   save() {
     console.log(this.form.value.poster);
+    const movie = {
+      ...this.form.value,
+    };
+    delete movie.poster;
+
     this.moviesApi
-      .create(this.form.value)
+      .create(movie)
       .pipe(
+        switchMap((value) => {
+          return this.moviesApi.uploadPoster(
+            { poster: this.form.value.poster },
+            value.id,
+          );
+        }),
         uploadProgress((progress) => (this.percentDone = progress)),
         toResponseBody(),
       )
