@@ -1,0 +1,34 @@
+<section>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="save()"
+    class="flex flex-col items-center"
+  >
+    <div>
+      <label
+        >Name
+        <input type="text" class="block" formControlName="name" />
+      </label>
+    </div>
+
+    <div>
+      <mv-file-upload formControlName="poster"></mv-file-upload>
+    </div>
+
+    <div>
+      <label
+        >Birth Date
+        <input type="date" class="block" formControlName="birthDate" />
+      </label>
+    </div>
+
+    <div>
+      <label>Bio</label>
+      <textarea class="block" formControlName="bio"></textarea>
+    </div>
+
+    <button [disabled]="form.invalid" type="submit">Submit</button>
+    {{ form.value.poster | json }}
+    {{ form.valid }}
+  </form>
+</section>

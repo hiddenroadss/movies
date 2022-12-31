@@ -22,6 +22,9 @@ export class Talent implements ITalent {
   @Column()
   bio: string;
 
+  @Column()
+  birthDate: Date;
+
   // @Column()
   // images: string[];
 

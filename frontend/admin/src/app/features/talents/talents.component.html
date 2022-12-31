@@ -1,0 +1,6 @@
+<section>
+  <div *ngFor="let talent of talents$ | async">
+    <h5>{{ talent.name }}</h5>
+    <p>{{ talent.age }}</p>
+  </div>
+</section>

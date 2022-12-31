@@ -6,8 +6,8 @@ export class CreateTalentDto implements Omit<ITalent, 'id'> {
   @IsString()
   name: string;
 
-  @IsNumber()
-  age: number;
+  @IsDate()
+  birthDate: Date;
 
   @IsString()
   bio: string;

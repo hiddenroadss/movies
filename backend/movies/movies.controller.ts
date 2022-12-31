@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   UploadedFiles,
   Res,
+  ParseFilePipe,
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express/multer';
 import { Public } from 'backend/common/decorators/public.decorator';
@@ -50,9 +51,14 @@ export class MoviesController {
 
   @Post('/:id/poster')
   @UseInterceptors(FilesInterceptor('poster'))
-  uploadPoster(@UploadedFiles() files) {
-    console.log(files);
-  }
+  uploadPoster(
+    @UploadedFiles(
+      new ParseFilePipe({
+        validators: [],
+      }),
+    )
+    file: Express.Multer.File,
+  ) {}
 
   @Get('/:id/poster')
   findUploadedFile(@Param('id') id: string, @Res() res) {

@@ -5,7 +5,7 @@ export interface ITalent {
 
   name: string;
 
-  age: number;
+  birthDate: Date;
 
   bio: string;
 

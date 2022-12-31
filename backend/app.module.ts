@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import * as Joi from '@hapi/joi';
 import { AccessTokenGuard } from './common/guards/access-token.guard';
 import { MoodsModule } from './moods/moods.module';
+import { TalentsModule } from './talents/talents.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { MoodsModule } from './moods/moods.module';
     AuthModule,
     UsersModule,
     MoodsModule,
+    TalentsModule,
   ],
   controllers: [AppController],
   providers: [
