@@ -21,6 +21,7 @@ export class TalentsCreateComponent implements OnInit {
     ]),
     bio: new FormControl('', [Validators.required]),
     movies: new FormControl(null),
+    country: new FormControl(null),
   });
 
   percentDone = 0;
