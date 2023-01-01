@@ -58,7 +58,12 @@ export class MoviesController {
       }),
     )
     file: Express.Multer.File,
-  ) {}
+    @Param('id') id: string,
+  ) {
+    return this.moviesService.update(id, {
+      poster: `/movies/${id}/poster`,
+    });
+  }
 
   @Get('/:id/poster')
   findUploadedFile(@Param('id') id: string, @Res() res) {

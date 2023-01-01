@@ -28,6 +28,10 @@ export class MoviesApiService {
     });
   }
 
+  getPoster(id: number) {
+    return this.http.get(`/api/movies/${id}/poster`);
+  }
+
   update(id: string, movie: any) {
     return this.http.patch<IMovie>(`/api/movies`, movie);
   }

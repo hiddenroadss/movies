@@ -22,11 +22,11 @@ export class MoviesCreateComponent implements OnInit {
       requiredFileType('png'),
     ]),
     releaseDate: new FormControl('', [Validators.required]),
-    country: new FormControl(''),
-    budget: new FormControl(0),
-    fees: new FormControl(0),
+    country: new FormControl(null),
+    budget: new FormControl(null),
+    fees: new FormControl(null),
     description: new FormControl('', [Validators.required]),
-    duration: new FormControl(0, [Validators.required]),
+    duration: new FormControl(null, [Validators.required]),
   });
 
   percentDone = 0;
@@ -36,7 +36,6 @@ export class MoviesCreateComponent implements OnInit {
   ngOnInit(): void {}
 
   save() {
-    console.log(this.form.value.poster);
     const movie = {
       ...this.form.value,
     };
