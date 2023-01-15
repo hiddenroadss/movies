@@ -17,9 +17,6 @@ export class Talent implements ITalent {
   name: string;
 
   @Column()
-  age: number;
-
-  @Column()
   bio: string;
 
   @Column()

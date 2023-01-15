@@ -12,6 +12,9 @@ export class CreateTalentDto implements Omit<ITalent, 'id'> {
   @IsString()
   bio: string;
 
+  @IsString()
+  country: string;
+
   @ValidateNested({ each: true })
   movies: Movie[];
 }

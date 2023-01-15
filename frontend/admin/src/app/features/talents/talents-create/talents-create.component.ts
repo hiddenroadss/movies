@@ -15,12 +15,9 @@ export class TalentsCreateComponent implements OnInit {
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
     birthDate: new FormControl(null, [Validators.required]),
-    poster: new FormControl(null, [
-      Validators.required,
-      requiredFileType('png'),
-    ]),
+    poster: new FormControl(null),
     bio: new FormControl('', [Validators.required]),
-    movies: new FormControl(null),
+    movies: new FormControl([]),
     country: new FormControl(null),
   });
 
@@ -36,22 +33,10 @@ export class TalentsCreateComponent implements OnInit {
     };
     delete talent.poster;
 
-    this.talentsApi
-      .create(talent)
-      .pipe(
-        switchMap((value) => {
-          return this.talentsApi.uploadPoster(
-            { poster: this.form.value.poster },
-            value.id,
-          );
-        }),
-        uploadProgress((progress) => (this.percentDone = progress)),
-        toResponseBody(),
-      )
-      .subscribe((response) => {
-        // this.progress = 0;
-        this.form.reset();
-        // do something with the response
-      });
+    this.talentsApi.create(talent).subscribe((response) => {
+      // this.progress = 0;
+      this.form.reset();
+      // do something with the response
+    });
   }
 }

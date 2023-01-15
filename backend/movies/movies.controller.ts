@@ -18,6 +18,7 @@ import { PaginationQueryDto } from 'backend/common/dto/pagination-query.dto';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 import { UpdateMovieDto } from './dtos/update-movie.dto';
 import { MoviesService } from './movies.service';
+import { access } from 'fs/promises';
 
 @Public()
 @Controller('movies')
@@ -61,12 +62,17 @@ export class MoviesController {
     @Param('id') id: string,
   ) {
     return this.moviesService.update(id, {
-      poster: `/movies/${id}/poster`,
+      poster: `movies/${id}/poster`,
     });
   }
 
   @Get('/:id/poster')
-  findUploadedFile(@Param('id') id: string, @Res() res) {
-    res.sendFile(`${id}_poster.png`, { root: 'uploads/movies' });
+  async findUploadedFile(@Param('id') id: string, @Res() res) {
+    try {
+      await access(`/uploads/movies/${id}_poster.png`);
+      res.sendFile(`${id}_poster.png`, { root: 'uploads/movies' });
+    } catch (err) {
+      res.sendFile(`default_poster.jpg`, { root: 'uploads/movies' });
+    }
   }
 }
