@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TalentsApiService } from '../../../core/services/talents-api/talents-api.service';
-import { requiredFileType } from '../../../shared/utils/required-file-type';
-import { switchMap } from 'rxjs';
-import { uploadProgress } from '../../../shared/utils/operators/upload-progress.operator';
-import { toResponseBody } from '../../../shared/utils/operators/to-response-body.operator';
 
 @Component({
   selector: 'mv-talents-create',
@@ -13,7 +9,11 @@ import { toResponseBody } from '../../../shared/utils/operators/to-response-body
 })
 export class TalentsCreateComponent implements OnInit {
   form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
     birthDate: new FormControl(null, [Validators.required]),
     poster: new FormControl(null),
     bio: new FormControl('', [Validators.required]),
