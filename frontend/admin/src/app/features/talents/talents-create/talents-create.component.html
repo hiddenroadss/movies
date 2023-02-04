@@ -2,27 +2,54 @@
   <form [formGroup]="form" (ngSubmit)="save()" autocomplete="off">
     <div class="child:border-b child:py-4 child:border-b-gray-200">
       <div class="">
-        <h3 class="text-xl font-medium">Profile</h3>
-        <p class="text-slate-500 text-sm">
-          This information will be displayed publicly so be careful what you
-          share.
-        </p>
+        <h3 class="text-xl font-medium">Create a Talent</h3>
+        <p class="text-slate-500 text-sm">Some useful information here</p>
       </div>
 
       <div class="flex items-center">
         <label for="name" class="basis-1/3 text-sm font-medium text-slate-600"
-          >Name</label
+          >Name<span class="text-red-500">*</span></label
         >
-        <input
-          type="text"
-          id="name"
-          formControlName="name"
-          class="border rounded-md border-slate-300 basis-1/3"
-        />
+        <div class="basis-1/3">
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="border rounded-md border-slate-300 w-full"
+          />
+          <p
+            *ngIf="
+              form.get('name').touched && form.get('name').hasError('required')
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            This field is required
+          </p>
+          <p
+            *ngIf="
+              form.get('name').touched && form.get('name').hasError('minlength')
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            This field should be at least
+            {{ form.get('name').errors.minlength.requiredLength }} characters
+            long
+          </p>
+          <p
+            *ngIf="
+              form.get('name').touched && form.get('name').hasError('maxlength')
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            This field should be less than
+            {{ form.get('name').errors.maxlength.requiredLength }} characters
+            long
+          </p>
+        </div>
       </div>
       <div class="flex items-center">
         <label for="bio" class="basis-1/3 text-sm font-medium text-slate-600"
-          >Bio</label
+          >Bio<span class="text-red-500">*</span></label
         >
         <div class="basis-1/3">
           <textarea
@@ -33,6 +60,14 @@
           ></textarea>
           <p class="text-sm text-slate-500">
             Write a few sentences about yourself.
+          </p>
+          <p
+            *ngIf="
+              form.get('bio').touched && form.get('bio').hasError('required')
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            This field is required
           </p>
         </div>
       </div>
@@ -63,15 +98,27 @@
         <label
           for="birthDate"
           class="basis-1/3 text-sm font-medium text-slate-600"
-          >Birth Date</label
+          >Birth Date<span class="text-red-500">*</span></label
         >
-        <input
-          type="date"
-          id="birthDate"
-          formControlName="birthDate"
-          autocomplete="username"
-          class="basis-1/3 border border-slate-300 rounded-md"
-        />
+
+        <div class="basis-1/3">
+          <input
+            type="date"
+            id="birthDate"
+            formControlName="birthDate"
+            autocomplete="username"
+            class="border border-slate-300 rounded-md"
+          />
+          <p
+            *ngIf="
+              form.get('birthDate').touched &&
+              form.get('birthDate').hasError('required')
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            This field is required
+          </p>
+        </div>
       </div>
 
       <div class="flex items-center">
@@ -100,7 +147,7 @@
       <button
         type="submit"
         [disabled]="form.invalid"
-        class="border rounded-md border-transparent font-medium text-sm py-2 px-4 bg-teal-500 text-white"
+        class="border rounded-md border-transparent font-medium text-sm py-2 px-4 bg-teal-500 text-white disabled:bg-slate-300"
       >
         Save
       </button>
