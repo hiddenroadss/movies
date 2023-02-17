@@ -15,7 +15,12 @@
             type="text"
             id="name"
             formControlName="name"
-            class="border rounded-md border-slate-300 w-full"
+            class="border rounded-md w-full"
+            [ngClass]="
+              form.get('name').invalid && form.get('name').touched
+                ? 'border-red-500'
+                : 'border-slate-300'
+            "
           />
           <p
             *ngIf="
@@ -56,7 +61,12 @@
             id="bio"
             formControlName="bio"
             rows="3"
-            class="border rounded-md border-slate-300 w-full"
+            class="border rounded-md w-full"
+            [ngClass]="
+              form.get('bio').invalid && form.get('bio').touched
+                ? 'border-red-500'
+                : 'border-slate-300'
+            "
           ></textarea>
           <p class="text-sm text-slate-500">
             Write a few sentences about yourself.
@@ -107,7 +117,12 @@
             id="birthDate"
             formControlName="birthDate"
             autocomplete="username"
-            class="border border-slate-300 rounded-md"
+            class="border rounded-md"
+            [ngClass]="
+              form.get('birthDate').invalid && form.get('birthDate').touched
+                ? 'border-red-500'
+                : 'border-slate-300'
+            "
           />
           <p
             *ngIf="
