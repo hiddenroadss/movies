@@ -1,4 +1,7 @@
-<section>
+<section class="flex flex-col items-center">
+  <div class="my-2 w-full flex justify-center">
+    <a routerLink="./create" mv-button color="accent">Create new</a>
+  </div>
   <div *ngFor="let talent of talents$ | async">
     <h5>{{ talent.name }}</h5>
     <p>{{ talent.age }}</p>

@@ -138,19 +138,8 @@
     </div>
 
     <div class="flex gap-3 justify-end items-center mt-6">
-      <button
-        type="button"
-        class="border rounded-md border-slate-300 font-medium text-sm py-2 px-4"
-      >
-        Cancel
-      </button>
-      <button
-        type="submit"
-        [disabled]="form.invalid"
-        class="border rounded-md border-transparent font-medium text-sm py-2 px-4 bg-teal-500 text-white disabled:bg-slate-300"
-      >
-        Save
-      </button>
+      <button type="button" mv-button color="secondary">Cancel</button>
+      <button type="submit" mv-button color="accent">Save</button>
     </div>
   </form>
 </section>
